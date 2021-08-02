@@ -1,0 +1,9 @@
+.idea/
+__pycache__
+deploy/
+.vscode
+env/
+venv/
+.DS_Store
+ldfu/prog/*
+ldfu/ldfu.properties

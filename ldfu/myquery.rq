@@ -1,0 +1,5 @@
+PREFIX pto: <http://www.productontology.org/id/>
+PREFIX td: <https://www.w3.org/2019/wot/td#>
+
+SELECT   ?robot ?t
+WHERE    { ?robot a pto:Robotic_arm . ?t a td:Thing.}
