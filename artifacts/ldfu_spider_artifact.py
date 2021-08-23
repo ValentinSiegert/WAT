@@ -16,7 +16,10 @@ class LDFUSpider(mp.Process):
                                stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
         cmd_out, cmd_err = cmd.communicate()
         os.remove(cred_path)
-        query_result = [item for item in cmd_out.decode('utf-8').split('\r\n')[1:] if item != '']
+        if sys.platform == 'win32' or sys.platform == 'win64':
+            query_result = [item for item in cmd_out.decode('utf-8').split('\r\n')[1:] if item != '']
+        else:
+            query_result = [item for item in cmd_out.decode('utf-8').split('\n')[1:] if item != '']
         return query_result
 
     def run(self):

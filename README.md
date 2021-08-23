@@ -9,8 +9,34 @@ perceive, decide and act for reaching their goals as part of the All The Agents 
     ```
     pipenv install
    ```
-2. Place LDFU files in `./ldfu/prog/`
-3. Run Program via 
+2. Place Linked Data-FU files in `./ldfu/prog/` such that the executables are findable 
+at `./ldfu/prog/bin/ldfu.bat` and `./ldfu/prog/bin/ldfu.sh`.
+We tested it only with the standalone version 0.9.13 of Linked Data-Fu,
+but also other versions should work.
+WAT detects then itself which executable to run based on the used operating system.
+The project directory should afterwards look similar to this:
+   ```
+    project root
+    |--- agents
+    |--- artifacts
+    |--- ldfu
+    |    |--- prog # includes now standalone version 0.9.13 of Linked Data-Fu
+    |    |    |--- bin
+    |    |    |    |--- some shell files
+    |    |    |    |--- ldfu.bat
+    |    |    |    |--- ldfu.sh
+    |    |    |    |--- some more shell files
+    |    |    |--- conf
+    |    |    |--- doc
+    |    |    |--- examples
+    |    |    |--- lib
+    |    |    |--- ruleset
+    |    |    |--- LICENSE.txt
+    |    |    |--- README.md
+    |    |--- several SPARQL files (*.rq)
+    |--- project root files
+   ``` 
+3. Run program via 
    
     ```
     python main.py

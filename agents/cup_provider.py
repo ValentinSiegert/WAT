@@ -9,9 +9,9 @@ class CupProvider(Agent):
             if message['action'] == 'order' or message['action'] == 'orderPackages':
                 query_result = None
                 if message['action'] == 'order':
-                    query_result = self.invoke_action('order', '25')
+                    query_result = self.invoke_action('order', message['content'])
                 elif message['action'] == 'orderPackages':
-                    query_result = self.invoke_action('orderPackages', '10')
+                    query_result = self.invoke_action('orderPackages', message['content'])
                 return_message = {
                     'sender': self.name,
                     'reason': query_result.reason

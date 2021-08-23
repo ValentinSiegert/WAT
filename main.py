@@ -1,8 +1,10 @@
 import multiprocessing as mp
 import os
+import requests
 import sys
 from pathlib import Path
 from artifacts.ldfu_spider_artifact import LDFUSpider
+from requests.auth import HTTPBasicAuth
 from agents.vl10_agent import Vl10Agent
 from agents.dx10_agent import Dx10Agent
 from agents.apas_agent import ApasAgent
@@ -53,6 +55,9 @@ ARTIFACTS = {
 }
 
 if __name__ == '__main__':
+    # do one factory reset to ensure correct execution
+    r = requests.post('https://ci.mines-stetienne.fr/simu/factory/actions/reset',
+                      auth=HTTPBasicAuth(CREDENTIALS[0], CREDENTIALS[1]))
     queues = {agent: mp.Queue() for agent in AGENTS.keys()}
     spider_pipes = {}
     processes = []
@@ -79,3 +84,5 @@ if __name__ == '__main__':
         processes.append(agent)
         agent.start()
     print(f'Factory is now fully running!')
+    for process in processes:
+        process.join()
